@@ -3,6 +3,7 @@ import Stars from './Stars';
 import Button from './Button';
 import Answer from './Answer';
 import Numbers from './Numbers';
+import DoneFrame from './DoneFrame';
 
 class Game extends React.Component{
    state = {
@@ -10,7 +11,8 @@ class Game extends React.Component{
       randomNumOfStars : Math.floor((Math.random() * 9)) + 1,
       ansIsCorrect : null,
       usedNums : [],
-      redrawNum : 5
+      redrawNum : 5,
+      doneStatus : null,
    };
    selectNumber = (clickedNum) => {
       if(this.state.selectedNums.indexOf(clickedNum) >= 0) 
@@ -55,7 +57,10 @@ class Game extends React.Component{
               <Answer selected={this.state.selectedNums} unselectNumber={this.unselectNumber}/>
            </div>
            <br />
-           <Numbers selected={this.state.selectedNums} selectNumber={this.selectNumber} usedNums={this.state.usedNums}/>
+           {
+              this.state.doneStatus ? <DoneFrame doneStatus={this.state.doneStatus}/> :
+              <Numbers selected={this.state.selectedNums} selectNumber={this.selectNumber} usedNums={this.state.usedNums}/>
+           }
          </div>
        );
     }
