@@ -4,7 +4,7 @@ const Button = (props) => {
   let button;
   switch(props.ansIsCorrect){
   case true: 
-    button = <button className="btn btn-success">
+    button = <button className="btn btn-success" onClick={props.acceptAnswer}>
                  <i className="fa fa-check"></i>
              </button>;
   break;
