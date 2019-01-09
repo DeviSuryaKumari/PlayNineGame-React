@@ -17,8 +17,13 @@ const Button = (props) => {
     button = <button onClick={props.checkAnswer} className="btn" disabled={props.selected.length === 0}>=</button>;
   }
   return(
-    <div className="col-2">
+    <div className="col-2 text-center">
       {button}
+      <br />
+      <br />
+      <button className="btn btn-warning btn-sm" onClick={props.redraw} disabled={props.redrawNum === 0}>
+          <i className="fa fa-refresh"></i>{props.redrawNum}
+      </button>
     </div>
   );
 };

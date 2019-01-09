@@ -10,6 +10,7 @@ class Game extends React.Component{
       randomNumOfStars : Math.floor((Math.random() * 9)) + 1,
       ansIsCorrect : null,
       usedNums : [],
+      redrawNum : 5
    };
    selectNumber = (clickedNum) => {
       if(this.state.selectedNums.indexOf(clickedNum) >= 0) 
@@ -34,6 +35,14 @@ class Game extends React.Component{
             })
         );
    };
+   redraw = () => {
+        this.setState( (prevState) =>
+           ({redrawNum : prevState.redrawNum - 1,
+            selectedNums : [],
+            randomNumOfStars : Math.floor((Math.random() * 9)) + 1,
+            ansIsCorrect : null,})
+        );
+   };
     render(){
        return(
          <div className="container">
@@ -41,7 +50,8 @@ class Game extends React.Component{
            <hr />
            <div className="row">
               <Stars randomNumOfStars={this.state.randomNumOfStars}/>
-              <Button selected={this.state.selectedNums} ansIsCorrect={this.state.ansIsCorrect} checkAnswer={this.checkAnswer} acceptAnswer={this.acceptAnswer}/>
+              <Button selected={this.state.selectedNums} ansIsCorrect={this.state.ansIsCorrect} checkAnswer={this.checkAnswer} acceptAnswer={this.acceptAnswer}
+              redraw={this.redraw} redrawNum={this.state.redrawNum}/>
               <Answer selected={this.state.selectedNums} unselectNumber={this.unselectNumber}/>
            </div>
            <br />
